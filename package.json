@@ -1,23 +1,26 @@
 {
-	"name": "base-project-symbiosis-plugin",
+	"name": "@techmmunity/symbiosis-mongodb",
 	"version": "0.0.1",
 	"main": "index.js",
 	"types": "index.d.ts",
 	"license": "Apache-2.0",
 	"author": "Techmmunity",
-	"description": "Base project to plugins for @techmmunity/symbiosis",
-	"homepage": "https://github.com/techmmunity/base-project-symbiosis-plugin#readme",
+	"description": "Symbiosis Plugin For MongoDB",
+	"homepage": "https://github.com/techmmunity/symbiosis-mongodb#readme",
 	"bugs": {
-		"url": "https://github.com/techmmunity/base-project-symbiosis-plugin/issues"
+		"url": "https://github.com/techmmunity/symbiosis-mongodb/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/techmmunity/base-project-symbiosis-plugin.git"
+		"url": "git+https://github.com/techmmunity/symbiosis-mongodb.git"
 	},
 	"keywords": [
 		"orm",
 		"odm",
 		"nosql",
+		"mongo",
+		"mongodb",
+		"typeorm",
 		"typescript",
 		"database",
 		"data-mapper",
@@ -25,19 +28,12 @@
 		"techmmunity-symbiosis"
 	],
 	"peerDependencies": {
-		"@techmmunity/symbiosis": "^0.0.25",
-		"@techmmunity/symbiosis-cli": "^0.0.4",
+		"@techmmunity/symbiosis": "^0.0.26",
 		"reflect-metadata": "^0.1.13"
-	},
-	"peerDependenciesMeta": {
-		"@techmmunity/symbiosis-cli": {
-			"optional": true
-		}
 	},
 	"devDependencies": {
 		"@techmmunity/eslint-config": "^5.1.2",
 		"@techmmunity/symbiosis": "^0.0.26",
-		"@techmmunity/symbiosis-cli": "^0.0.4",
 		"@types/jest": "^27.0.1",
 		"@vercel/ncc": "^0.31.1",
 		"eslint": "^8.2.0",
@@ -55,12 +51,15 @@
 		"ts-node": "ts-node",
 		"test": "jest",
 		"test:cov": "jest --coverage --passWithNoTests",
-		"build": "ncc build src/index.ts -o dist -s -m -e reflect-metadata",
+		"build": "ncc build src/index.ts -o dist -s -m -e reflect-metadata -e @techmmunity/symbiosis",
 		"format": "eslint . --fix --quiet",
 		"lint": "eslint . --quiet",
 		"upgrade-dependencies": "yarn upgrade-interactive --latest",
 		"husky:pre-commit": "tsc && lint-staged",
 		"lk": "yarn build && cp package.json dist/package.json && cd dist && yarn link && cd ..",
 		"ulk": "yarn unlink && yarn lk"
+	},
+	"dependencies": {
+		"mongodb": "^4.1.4"
 	}
 }
