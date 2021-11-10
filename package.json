@@ -49,7 +49,7 @@
 	"scripts": {
 		"prepare": "husky install",
 		"ts-node": "ts-node",
-		"test": "jest",
+		"test": "jest --passWithNoTests",
 		"test:cov": "jest --coverage --passWithNoTests",
 		"build": "ncc build src/index.ts -o dist -s -m -e reflect-metadata -e @techmmunity/symbiosis",
 		"format": "eslint . --fix --quiet",
