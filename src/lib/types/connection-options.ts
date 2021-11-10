@@ -1,14 +1,12 @@
 import { BaseConnectionOptions } from "@techmmunity/symbiosis";
+import { MongoClientOptions } from "mongodb";
 
-/**
- * Example type:
- * DynamoDBClientOptions
- *
- * Obs: Remove this comment and this type
- */
-export type DatabaseConfigType = any;
+export interface DatabaseConfigType extends MongoClientOptions {
+	url: string;
+	databaseName: string;
+}
 
-export type ExampleConnectionOptions = Omit<
+export type MongodbConnectionOptions = Omit<
 	BaseConnectionOptions<DatabaseConfigType>,
 	"plugin"
 >;

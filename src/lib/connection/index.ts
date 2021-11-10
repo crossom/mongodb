@@ -1,52 +1,44 @@
 import { BaseConnection } from "@techmmunity/symbiosis";
 import type { CustomClass } from "@techmmunity/symbiosis/lib/entity-manager/types/metadata-type";
+import { MongoClient } from "mongodb";
 import { Repository } from "../repository";
 import type { ColumnExtraMetadata } from "../types/column-extra-metadata";
-import type { ExampleConnectionOptions } from "../types/connection-options";
+import type {
+	DatabaseConfigType,
+	MongodbConnectionOptions,
+} from "../types/connection-options";
 import type { EntityExtraMetadata } from "../types/entity-extra-metadata";
 import type { IndexExtraMetadata } from "../types/index-extra-metadata";
 
-/**
- * Example type:
- * DynamoDBClient
- *
- * Obs: Remove this comment and this type
- */
-export type LibClientType = any;
-
-/**
- * Example type:
- * DynamoDBClientConfig
- *
- * Obs: Remove this comment and this type
- */
-export type LibClientConfigType = any;
-
 export class Connection extends BaseConnection<
-	LibClientConfigType,
+	DatabaseConfigType,
 	EntityExtraMetadata,
 	ColumnExtraMetadata,
 	IndexExtraMetadata
 > {
-	private _connectionInstance: LibClientType;
+	private _connectionInstance: MongoClient;
 
 	public get connectionInstance() {
 		return this._connectionInstance;
 	}
 
-	public constructor(options?: ExampleConnectionOptions) {
-		super("base-project-symbiosis-plugin", options);
+	public constructor(options?: MongodbConnectionOptions) {
+		super("@techmmunity/symbiosis-mongodb", options);
 	}
 
-	// eslint-disable-next-line require-await
 	public async connect() {
-		this._connectionInstance = {};
-		/*
-		 * Example:
-		 * this.connectionInstance = new DynamoDBClient(
-		 * 	options.databaseConnectionConfig || {},
-		 * );
-		 */
+		const {
+			url,
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			databaseName: _databaseName,
+			...options
+		} = this.options.databaseConfig || {};
+
+		this._connectionInstance = new MongoClient(url as string, options);
+
+		// Test the connection
+		await this.connectionInstance.connect();
+		await this.connectionInstance.close();
 	}
 
 	public getRepository<Entity>(entity: CustomClass) {
@@ -55,6 +47,7 @@ export class Connection extends BaseConnection<
 			this.entityManager,
 			this.logger,
 			entity as Entity,
+			this.options,
 		);
 	}
 }
