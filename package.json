@@ -31,6 +31,9 @@
 		"@techmmunity/symbiosis": "^0.0.26",
 		"reflect-metadata": "^0.1.13"
 	},
+	"dependencies": {
+		"mongodb": "^4.1.4"
+	},
 	"devDependencies": {
 		"@techmmunity/eslint-config": "^5.1.2",
 		"@techmmunity/symbiosis": "^0.0.26",
@@ -58,8 +61,5 @@
 		"husky:pre-commit": "tsc && lint-staged",
 		"lk": "yarn build && cp package.json dist/package.json && cd dist && yarn link && cd ..",
 		"ulk": "yarn unlink && yarn lk"
-	},
-	"dependencies": {
-		"mongodb": "^4.1.4"
 	}
 }
