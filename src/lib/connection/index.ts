@@ -1,4 +1,4 @@
-import { BaseConnection } from "@techmmunity/symbiosis";
+import { BaseConnection, SymbiosisError } from "@techmmunity/symbiosis";
 import type { CustomClass } from "@techmmunity/symbiosis/lib/entity-manager/types/metadata-type";
 import { MongoClient } from "mongodb";
 import { Repository } from "../repository";
@@ -27,18 +27,40 @@ export class Connection extends BaseConnection<
 	}
 
 	public async connect() {
-		const {
-			url,
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			databaseName: _databaseName,
-			...options
-		} = this.options.databaseConfig || {};
+		const { url, databaseName, ...options } = this.options.databaseConfig || {};
 
-		this._connectionInstance = new MongoClient(url as string, options);
+		if (!url) {
+			throw new SymbiosisError({
+				code: "MISSING_PARAM",
+				origin: "SYMBIOSIS",
+				message: "Missing param",
+				details: ["`url` is a required property"],
+			});
+		}
+
+		if (!databaseName) {
+			throw new SymbiosisError({
+				code: "MISSING_PARAM",
+				origin: "SYMBIOSIS",
+				message: "Missing param",
+				details: ["`databaseName` is a required property"],
+			});
+		}
+
+		this._connectionInstance = new MongoClient(url, options);
 
 		// Test the connection
-		await this.connectionInstance.connect();
-		await this.connectionInstance.close();
+		try {
+			await this.connectionInstance.connect();
+			await this.connectionInstance.close();
+		} catch (err: any) {
+			throw new SymbiosisError({
+				code: "UNKNOWN",
+				origin: "DATABASE",
+				message: "Fail to connect",
+				details: [err.message],
+			});
+		}
 	}
 
 	public getRepository<Entity>(entity: CustomClass) {
