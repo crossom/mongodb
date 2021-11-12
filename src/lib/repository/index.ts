@@ -67,12 +67,12 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 		data: SaveData<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<Result> {
-		return this.run(() =>
-			save(this as any, {
-				data,
-				options,
-			}),
-		);
+		return save(this as any, {
+			data,
+			options,
+		}).catch(err => {
+			throw handleDatabaseError(err);
+		});
 	}
 
 	/**
@@ -173,13 +173,13 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 		data: ClassType<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<Result> {
-		return this.run(() =>
-			upsert(this as any, {
-				conditions,
-				data,
-				options,
-			}),
-		);
+		return upsert(this as any, {
+			conditions,
+			data,
+			options,
+		}).catch(err => {
+			throw handleDatabaseError(err);
+		});
 	}
 
 	/**
@@ -195,12 +195,12 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 		conditions: FindOptions<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<Array<Entity>> {
-		return this.run(() =>
-			find(this as any, {
-				conditions,
-				options,
-			}),
-		);
+		return find(this as any, {
+			conditions,
+			options,
+		}).catch(err => {
+			throw handleDatabaseError(err);
+		});
 	}
 
 	/**
@@ -216,27 +216,24 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 		conditions: FindOneOptions<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<Entity> {
-		return this.run(() =>
-			findOne(this as any, {
-				conditions,
-				options,
-			}),
-		);
+		return findOne(this as any, {
+			conditions,
+			options,
+		}).catch(err => {
+			throw handleDatabaseError(err);
+		});
 	}
 
-	/**
-	 * ## NOT IMPLEMENTED!
-	 */
 	public delete(
 		where: FindConditions<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<number> {
-		return this.run(() =>
-			del(this as any, {
-				where,
-				options,
-			}),
-		);
+		return del(this as any, {
+			where,
+			options,
+		}).catch(err => {
+			throw handleDatabaseError(err);
+		});
 	}
 
 	/**
@@ -403,22 +400,5 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 		 * 	options: options,
 		 * });
 		 */
-	}
-
-	/**
-	 * Handles the run of a function
-	 */
-	private async run(func: () => Promise<any>) {
-		try {
-			await this.connectionInstance.connect();
-
-			const result = await func();
-
-			return result;
-		} catch (err) {
-			throw handleDatabaseError(err);
-		} finally {
-			await this.connectionInstance.close();
-		}
 	}
 }
