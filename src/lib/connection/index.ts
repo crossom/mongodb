@@ -52,15 +52,18 @@ export class Connection extends BaseConnection<
 		// Test the connection
 		try {
 			await this.connectionInstance.connect();
-			await this.connectionInstance.close();
 		} catch (err: any) {
 			throw new SymbiosisError({
 				code: "UNKNOWN",
 				origin: "DATABASE",
-				message: "Fail to connect",
+				message: "Fail to connect with the database",
 				details: [err.message],
 			});
 		}
+	}
+
+	public async close() {
+		await this.connectionInstance.close();
 	}
 
 	public getRepository<Entity>(entity: CustomClass) {
