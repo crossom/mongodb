@@ -19,17 +19,16 @@ import {
 	Logger,
 	SaveData,
 } from "@techmmunity/symbiosis";
-import { Collection, MongoClient } from "mongodb";
-import { MongodbConnectionOptions } from "../..";
-import { ColumnExtraMetadata } from "../types/column-extra-metadata";
-import { EntityExtraMetadata } from "../types/entity-extra-metadata";
-import { IndexExtraMetadata } from "../types/index-extra-metadata";
+import type { Collection, MongoClient } from "mongodb";
+import type { MongodbConnectionOptions } from "../..";
+import type { ColumnExtraMetadata } from "../types/column-extra-metadata";
+import type { EntityExtraMetadata } from "../types/entity-extra-metadata";
+import type { IndexExtraMetadata } from "../types/index-extra-metadata";
 import { handleDatabaseError } from "../utils/handle-database-error";
 import { del } from "./delete";
 import { find } from "./find";
 import { findOne } from "./find-one";
 import { save } from "./save";
-import { upsert } from "./upsert";
 
 export class Repository<Entity> extends BaseRepository<Entity> {
 	// Is used in all methods, passed as `this as any`
@@ -54,10 +53,7 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	}
 
 	/**
-	 * - This function **CREATE** one or many records
-	 *
-	 * - This function **DOES NOT** accept _SaveOperators_, if you want to use they,
-	 * use the **upsert** function instead
+	 * - This function **CREATE** or **UPDATE** one or more records based on the `_id` column
 	 *
 	 * @param data The entity data that you want to save to the database
 	 * @param options Options for this operation
@@ -159,27 +155,46 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	}
 
 	/**
-	 * - This function **UPSERT** one record
-	 *
-	 * - This function **DOES NOT** accept _SaveOperators_ **yet**
-	 *
-	 * @param conditions The conditions to update the entity
-	 * @param data The entity data that you want to update
-	 * @param options Options for this operation
-	 * @returns The entity as it's updated or created on the database
+	 * ## NOT IMPLEMENTED!
 	 */
 	public upsert<Result = Array<Entity> | Entity>(
 		conditions: FindConditions<Entity>,
 		data: ClassType<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<Result> {
-		return upsert(this as any, {
-			conditions,
-			data,
-			options,
-		}).catch(err => {
-			throw handleDatabaseError(err);
+		// Delete this after the method is implemented
+		throw new SymbiosisError({
+			code: "NOT_IMPLEMENTED",
+			origin: "SYMBIOSIS",
+			details: ["Method `upsert` is not implemented yet by this plugin"],
+			message: "Method not implemented",
 		});
+
+		/*
+		 * // TODO Uncomment this when method implemented
+		 *
+		 * const dataInDatabaseFormat = this.beforeUpsert({
+		 * 	conditions: conditions,
+		 * 	data: data,
+		 * 	options: options,
+		 * });
+		 *
+		 * // ...
+		 *
+		 * // Do Plugin Stuff Here
+		 *
+		 * // ...
+		 *
+		 *
+		 * // Just an example, do not do this.
+		 * const dataFromDatabase = dataInDatabaseFormat;
+		 *
+		 * return this.afterUpsert({
+		 * 	data: dataFromDatabase,
+		 * 	conditions: conditions,
+		 * 	options: options,
+		 * });
+		 */
 	}
 
 	/**
@@ -224,6 +239,13 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 		});
 	}
 
+	/**
+	 * Deletes one or more records
+	 *
+	 * @param where Find conditions
+	 * @param options Options for this operation
+	 * @returns Count of deleted records
+	 */
 	public delete(
 		where: FindConditions<Entity>,
 		options?: BaseQueryOptions,

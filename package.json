@@ -1,6 +1,6 @@
 {
 	"name": "@techmmunity/symbiosis-mongodb",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"main": "index.js",
 	"types": "index.d.ts",
 	"license": "Apache-2.0",
@@ -32,6 +32,7 @@
 		"reflect-metadata": "^0.1.13"
 	},
 	"dependencies": {
+		"@techmmunity/utils": "^1.8.1",
 		"mongodb": "^4.1.4"
 	},
 	"devDependencies": {
@@ -52,8 +53,8 @@
 	"scripts": {
 		"prepare": "husky install",
 		"ts-node": "ts-node",
-		"test": "jest --passWithNoTests",
-		"test:cov": "jest --coverage --passWithNoTests",
+		"test": "jest",
+		"test:cov": "jest --coverage",
 		"build": "ncc build src/index.ts -o dist -s -m -e reflect-metadata -e @techmmunity/symbiosis",
 		"format": "eslint . --fix --quiet",
 		"lint": "eslint . --quiet",

@@ -47,10 +47,10 @@ export class Connection extends BaseConnection<
 			});
 		}
 
-		this._connectionInstance = new MongoClient(url, options);
-
 		// Test the connection
 		try {
+			this._connectionInstance = new MongoClient(url, options);
+
 			await this.connectionInstance.connect();
 		} catch (err: any) {
 			throw new SymbiosisError({

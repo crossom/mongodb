@@ -1,6 +1,6 @@
 import type { BeforeFindParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find";
 import type { Context } from "../../types/context";
-import { getWhere } from "./helpers/get-where";
+import { getArrayWhere } from "../../utils/get-array-where";
 
 export const find = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!
@@ -11,9 +11,15 @@ export const find = async <Entity>(
 		options: rawOptions,
 	});
 
-	const where = getWhere(conditions.where || {});
+	const where = getArrayWhere(conditions.where);
 
-	const result = await context.table.find(where).toArray();
+	const query = {
+		$or: where,
+	};
+
+	context.logger.debug(query);
+
+	const result = await context.table.find(query).toArray();
 
 	return context.afterFind({
 		conditions: rawConditions,
