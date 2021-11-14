@@ -15,6 +15,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.0.4] - 2021-11-14
+
+### Added
+
+- Support for `Like` FindOperator
+- Support for `IsNull` FindOperator
+- Support for `Includes` FindOperator
+- Support for `StartsWith` FindOperator
+- Support for `EndsWith` FindOperator
+- Support for `Between` FindOperator
+- Support for `Between` FindOperator
+
+### Changed
+
+### Fixed
+
+### Removed
+
 ## [0.0.3] - 2021-11-14
 
 ### Added
