@@ -625,6 +625,11 @@
   resolved "https://registry.yarnpkg.com/@techmmunity/utils/-/utils-1.5.0.tgz#2a5014536fc553206ab1a1aec11bb4b78a58a922"
   integrity sha512-kZWJsXfpm+c/3SOw7C5BiEpGeuIEIfIuGSIXszOqOah8ne6uXQPlf3V20f5EY3jX9aWZfOCz7L5SV80wHdng+g==
 
+"@techmmunity/utils@^1.8.1":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@techmmunity/utils/-/utils-1.8.1.tgz#8152d55bf8b24c7923323e183b11750f96363c8d"
+  integrity sha512-dTShIyKOaKfu3qAx+7ATzIwfMsLNlCsgKhsrCeMEOAfUKsH7oOXLayvjqBl2R5JCocNyHejAj2irJrKaQaQ38w==
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"

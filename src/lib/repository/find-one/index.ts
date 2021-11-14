@@ -1,7 +1,7 @@
 import type { BeforeFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find-one";
-import { Document } from "bson";
+import type { Document } from "bson";
 import type { Context } from "../../types/context";
-import { getWhere } from "../find/helpers/get-where";
+import { getArrayWhere } from "../../utils/get-array-where";
 
 export const findOne = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!
@@ -15,9 +15,15 @@ export const findOne = async <Entity>(
 		options: rawOptions,
 	});
 
-	const where = getWhere(conditions.where || {});
+	const where = getArrayWhere(conditions.where);
 
-	const result = (await context.table.findOne(where)) as Document;
+	const query = {
+		$or: where,
+	};
+
+	context.logger.debug(query);
+
+	const result = (await context.table.findOne(query)) as Document | undefined;
 
 	return context.afterFindOne({
 		conditions: rawConditions,

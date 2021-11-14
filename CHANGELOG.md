@@ -15,6 +15,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.0.3] - 2021-11-14
+
+### Added
+
+- Support for SaveOperators
+- Support for FindOperators
+
+### Changed
+
+- Refact `save`
+- Refact `delete`
+- Refact `find`
+- Refact `findOne`
+
+### Fixed
+
+### Removed
+
+- `upsert` (should use `save` instead)
+
 ## [0.0.2] - 2021-11-12
 
 ### Added
