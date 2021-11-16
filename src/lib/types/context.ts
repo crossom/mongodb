@@ -1,12 +1,16 @@
 import type { EntityManager, Logger } from "@techmmunity/symbiosis";
+import type { AfterCountParams } from "@techmmunity/symbiosis/lib/repository/methods/after-count";
 import type { AfterDeleteParams } from "@techmmunity/symbiosis/lib/repository/methods/after-delete";
 import type { AfterFindParams } from "@techmmunity/symbiosis/lib/repository/methods/after-find";
 import type { AfterFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/after-find-one";
+import type { AfterPerformativeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/after-performative-count";
 import type { AfterSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/after-save";
 import type { AfterUpsertParams } from "@techmmunity/symbiosis/lib/repository/methods/after-upsert";
+import type { BeforeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/before-count";
 import type { BeforeDeleteParams } from "@techmmunity/symbiosis/lib/repository/methods/before-delete";
 import type { BeforeFindParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find";
 import type { BeforeFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find-one";
+import type { BeforePerformativeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/before-performative-count";
 import type { BeforeSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/before-save";
 import type { BeforeUpsertParams } from "@techmmunity/symbiosis/lib/repository/methods/before-upsert";
 import type { DatabaseEntity } from "@techmmunity/symbiosis/lib/types/database-entity";
@@ -37,6 +41,16 @@ export interface Context<Entity> {
 		params: BeforeDeleteParams<Entity>,
 	) => BeforeDeleteParams<DatabaseEntity>;
 	afterDelete: (params: AfterDeleteParams<Entity>) => Promise<number>;
+	beforeCount: (
+		params: BeforeCountParams<Entity>,
+	) => BeforeCountParams<DatabaseEntity>;
+	afterCount: (params: AfterCountParams<Entity>) => Promise<number>;
+	beforePerformativeCount: (
+		params: BeforePerformativeCountParams<Entity>,
+	) => BeforePerformativeCountParams<DatabaseEntity>;
+	afterPerformativeCount: (
+		params: AfterPerformativeCountParams<Entity>,
+	) => Promise<number>;
 	entityManager: EntityManager<
 		EntityExtraMetadata,
 		ColumnExtraMetadata,

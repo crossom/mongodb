@@ -1,5 +1,5 @@
 import type { BeforeSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/before-save";
-import { UpdateOneModel } from "mongodb";
+import type { UpdateOneModel } from "mongodb";
 import type { Context } from "../../types/context";
 import { formatSaveData } from "../../utils/format-save-data";
 

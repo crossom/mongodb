@@ -15,6 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.0.6] - 2021-11-18
+
+### Added
+
+- `count`
+- `performativeCount`
+
+### Changed
+
+### Fixed
+
+### Removed
+
 ## [0.0.5] - 2021-11-18
 
 ### Added
