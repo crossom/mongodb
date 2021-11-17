@@ -6,13 +6,13 @@
 	"license": "Apache-2.0",
 	"author": "Techmmunity",
 	"description": "Symbiosis Plugin For MongoDB",
-	"homepage": "https://github.com/techmmunity/symbiosis-mongodb#readme",
+	"homepage": "https://github.com/techmmunity-symbiosis/mongodb#readme",
 	"bugs": {
-		"url": "https://github.com/techmmunity/symbiosis-mongodb/issues"
+		"url": "https://github.com/techmmunity-symbiosis/mongodb/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/techmmunity/symbiosis-mongodb.git"
+		"url": "git+https://github.com/techmmunity-symbiosis/mongodb.git"
 	},
 	"keywords": [
 		"orm",
