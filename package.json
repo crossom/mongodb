@@ -39,7 +39,7 @@
 		"@techmmunity/eslint-config": "^5.1.2",
 		"@techmmunity/symbiosis": "^0.0.28",
 		"@types/jest": "^27.0.1",
-		"@vercel/ncc": "^0.31.1",
+		"@vercel/ncc": "^0.32.0",
 		"eslint": "^8.2.0",
 		"husky": "^7.0.4",
 		"jest": "^27.3.1",
