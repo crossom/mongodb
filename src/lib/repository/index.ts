@@ -25,9 +25,11 @@ import type { ColumnExtraMetadata } from "../types/column-extra-metadata";
 import type { EntityExtraMetadata } from "../types/entity-extra-metadata";
 import type { IndexExtraMetadata } from "../types/index-extra-metadata";
 import { handleDatabaseError } from "../utils/handle-database-error";
+import { count } from "./count";
 import { del } from "./delete";
 import { find } from "./find";
 import { findOne } from "./find-one";
+import { performativeCount } from "./performative-count";
 import { save } from "./save";
 
 export class Repository<Entity> extends BaseRepository<Entity> {
@@ -200,8 +202,6 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	/**
 	 * - This function **FINDS** multiple records
 	 *
-	 * - This function **DOES NOT** accept _FindOperators_ **yet**
-	 *
 	 * @param conditions The conditions to find the entities
 	 * @param options Options for this operation
 	 * @returns The entities found
@@ -221,8 +221,6 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	/**
 	 * - This function **FINDS** one record
 	 *
-	 * - This function **DOES NOT** accept _FindOperators_ **yet**
-	 *
 	 * @param conditions The conditions to find the entity
 	 * @param options Options for this operation
 	 * @returns The entity found
@@ -240,7 +238,7 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	}
 
 	/**
-	 * Deletes one or more records
+	 * Deletes one or more records based on a query
 	 *
 	 * @param where Find conditions
 	 * @param options Options for this operation
@@ -341,86 +339,39 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	}
 
 	/**
-	 * ## NOT IMPLEMENTED!
+	 * Count records based on a query
+	 *
+	 * @param where Find conditions
+	 * @param options Options for this operation
+	 * @returns Count of matched records
 	 */
 	public count(
 		where: FindConditions<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<number> {
-		// Delete this after the method is implemented
-		throw new SymbiosisError({
-			code: "NOT_IMPLEMENTED",
-			origin: "SYMBIOSIS",
-			details: ["Method `count` is not implemented yet by this plugin"],
-			message: "Method not implemented",
+		return count(this as any, {
+			where,
+			options,
 		});
-
-		/*
-		 * // TODO Uncomment this when method implemented
-		 *
-		 * const dataInDatabaseFormat = this.beforeCount({
-		 * 	where: where,
-		 * 	options: options,
-		 * });
-		 *
-		 * // ...
-		 *
-		 * // Do Plugin Stuff Here
-		 *
-		 * // ...
-		 *
-		 *
-		 * // Just an example, do not do this.
-		 * const dataFromDatabase = dataInDatabaseFormat;
-		 *
-		 * return this.afterCount({
-		 * 	data: dataFromDatabase,
-		 * 	where: where,
-		 * 	options: options,
-		 * });
-		 */
 	}
 
 	/**
-	 * ## NOT IMPLEMENTED!
+	 * Estimate a count of **ALL** the records of a collection.
+	 *
+	 * - **DOESN'T MATTER WHAT PARAMETERS DO YOU USE,
+	 * IT WILL COUNT ALL THE RECORDS**, if you want
+	 * to count based on a query, use `count` instead.
+	 * - The count **isn't exact**, it's an estimative
+	 *
+	 * @returns Count of all records
 	 */
 	public performativeCount(
 		where: FindConditions<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<number> {
-		// Delete this after the method is implemented
-		throw new SymbiosisError({
-			code: "NOT_IMPLEMENTED",
-			origin: "SYMBIOSIS",
-			details: [
-				"Method `performativeCount` is not implemented yet by this plugin",
-			],
-			message: "Method not implemented",
+		return performativeCount(this as any, {
+			where,
+			options,
 		});
-
-		/*
-		 * // TODO Uncomment this when method implemented
-		 *
-		 * const dataInDatabaseFormat = this.beforePerformativeCount({
-		 * 	where: where,
-		 * 	options: options,
-		 * });
-		 *
-		 * // ...
-		 *
-		 * // Do Plugin Stuff Here
-		 *
-		 * // ...
-		 *
-		 *
-		 * // Just an example, do not do this.
-		 * const dataFromDatabase = dataInDatabaseFormat;
-		 *
-		 * return this.afterPerformativeCount({
-		 * 	data: dataFromDatabase,
-		 * 	where: where,
-		 * 	options: options,
-		 * });
-		 */
 	}
 }
