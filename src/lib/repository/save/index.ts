@@ -42,7 +42,7 @@ export const save = async <Entity>(
 	const insertedRecords = await context.table
 		.find({
 			_id: {
-				$in: ids,
+				$in: ids as any,
 			},
 		})
 		.toArray();
