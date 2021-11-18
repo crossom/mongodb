@@ -15,6 +15,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.0.5] - 2021-11-18
+
+### Added
+
+- Support for `take` on `find` method
+- Support for `skip` on `find` method
+- Support for `order` on `find` method
+
+### Changed
+
+### Fixed
+
+### Removed
+
 ## [0.0.4] - 2021-11-14
 
 ### Added
