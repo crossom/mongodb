@@ -1,10 +1,10 @@
-import type { BeforeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/before-count";
+import type { BeforeCountInput } from "@techmmunity/symbiosis/lib/repository/methods/count/before";
 import type { Context } from "../../types/context";
 import { formatFindData } from "../../utils/format-find-data";
 
 export const count = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!
-	{ where: rawWhere, options: rawOptions }: BeforeCountParams<Entity>,
+	{ where: rawWhere, options: rawOptions }: BeforeCountInput<Entity>,
 ) => {
 	const { where } = context.beforeCount({
 		where: rawWhere,

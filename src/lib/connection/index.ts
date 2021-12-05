@@ -1,20 +1,17 @@
 import { BaseConnection, SymbiosisError } from "@techmmunity/symbiosis";
 import type { CustomClass } from "@techmmunity/symbiosis/lib/entity-manager/types/metadata-type";
 import { MongoClient } from "mongodb";
+
 import { Repository } from "../repository";
-import type { ColumnExtraMetadata } from "../types/column-extra-metadata";
 import type {
 	DatabaseConfigType,
 	MongodbConnectionOptions,
 } from "../types/connection-options";
-import type { EntityExtraMetadata } from "../types/entity-extra-metadata";
-import type { IndexExtraMetadata } from "../types/index-extra-metadata";
+import type { ExtraMetadata } from "../types/extra-metadata";
 
 export class Connection extends BaseConnection<
 	DatabaseConfigType,
-	EntityExtraMetadata,
-	ColumnExtraMetadata,
-	IndexExtraMetadata
+	ExtraMetadata
 > {
 	private _connectionInstance: MongoClient;
 
@@ -52,6 +49,8 @@ export class Connection extends BaseConnection<
 			this._connectionInstance = new MongoClient(url, options);
 
 			await this.connectionInstance.connect();
+
+			return this;
 		} catch (err: any) {
 			throw new SymbiosisError({
 				code: "UNKNOWN",
@@ -60,6 +59,11 @@ export class Connection extends BaseConnection<
 				details: [err.message],
 			});
 		}
+	}
+
+	// eslint-disable-next-line require-await
+	public async validate() {
+		super.basicValidate();
 	}
 
 	public async close() {

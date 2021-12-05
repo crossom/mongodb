@@ -1,4 +1,4 @@
-import type { BeforeFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find-one";
+import type { BeforeFindOneInput } from "@techmmunity/symbiosis/lib/repository/methods/find-one/before";
 import type { Document } from "bson";
 import type { Context } from "../../types/context";
 import { getArrayWhere } from "../../utils/get-array-where";
@@ -8,7 +8,7 @@ export const findOne = async <Entity>(
 	{
 		conditions: rawConditions,
 		options: rawOptions,
-	}: BeforeFindOneParams<Entity>,
+	}: BeforeFindOneInput<Entity>,
 ) => {
 	const { conditions } = context.beforeFindOne({
 		conditions: rawConditions,

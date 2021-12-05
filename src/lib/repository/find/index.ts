@@ -1,4 +1,4 @@
-import type { BeforeFindParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find";
+import type { BeforeFindInput } from "@techmmunity/symbiosis/lib/repository/methods/find/before";
 import { getTypeof, unnest } from "@techmmunity/utils";
 import { SortDirection } from "mongodb";
 import type { Context } from "../../types/context";
@@ -6,7 +6,7 @@ import { getArrayWhere } from "../../utils/get-array-where";
 
 export const find = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!
-	{ conditions: rawConditions, options: rawOptions }: BeforeFindParams<Entity>,
+	{ conditions: rawConditions, options: rawOptions }: BeforeFindInput<Entity>,
 ) => {
 	const { conditions } = context.beforeFind({
 		conditions: rawConditions,

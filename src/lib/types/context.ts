@@ -1,61 +1,63 @@
 import type { EntityManager, Logger } from "@techmmunity/symbiosis";
-import type { AfterCountParams } from "@techmmunity/symbiosis/lib/repository/methods/after-count";
-import type { AfterDeleteParams } from "@techmmunity/symbiosis/lib/repository/methods/after-delete";
-import type { AfterFindParams } from "@techmmunity/symbiosis/lib/repository/methods/after-find";
-import type { AfterFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/after-find-one";
-import type { AfterPerformativeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/after-performative-count";
-import type { AfterSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/after-save";
-import type { AfterUpsertParams } from "@techmmunity/symbiosis/lib/repository/methods/after-upsert";
-import type { BeforeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/before-count";
-import type { BeforeDeleteParams } from "@techmmunity/symbiosis/lib/repository/methods/before-delete";
-import type { BeforeFindParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find";
-import type { BeforeFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/before-find-one";
-import type { BeforePerformativeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/before-performative-count";
-import type { BeforeSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/before-save";
-import type { BeforeUpsertParams } from "@techmmunity/symbiosis/lib/repository/methods/before-upsert";
-import type { DatabaseEntity } from "@techmmunity/symbiosis/lib/types/database-entity";
+import type { AfterCountParams } from "@techmmunity/symbiosis/lib/repository/methods/count/after";
+import type { AfterDeleteParams } from "@techmmunity/symbiosis/lib/repository/methods/delete/after";
+import type { AfterFindParams } from "@techmmunity/symbiosis/lib/repository/methods/find/after";
+import type { AfterFindOneParams } from "@techmmunity/symbiosis/lib/repository/methods/find-one/after";
+import type { AfterPerformativeCountParams } from "@techmmunity/symbiosis/lib/repository/methods/performative-count/after";
+import type { AfterSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/save/after";
+import type { AfterUpsertParams } from "@techmmunity/symbiosis/lib/repository/methods/upsert/after";
+import type {
+	BeforeCountInput,
+	BeforeCountOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/count/before";
+import type {
+	BeforeDeleteInput,
+	BeforeDeleteOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/delete/before";
+import type {
+	BeforeFindInput,
+	BeforeFindOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/find/before";
+import type {
+	BeforeFindOneInput,
+	BeforeFindOneOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/find-one/before";
+import type {
+	BeforePerformativeCountInput,
+	BeforePerformativeCountOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/performative-count/before";
+import type {
+	BeforeSaveInput,
+	BeforeSaveOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/save/before";
+import type {
+	BeforeUpsertInput,
+	BeforeUpsertOutput,
+} from "@techmmunity/symbiosis/lib/repository/methods/upsert/before";
 import type { Collection, MongoClient } from "mongodb";
-import type { ColumnExtraMetadata } from "./column-extra-metadata";
-import type { EntityExtraMetadata } from "./entity-extra-metadata";
-import type { IndexExtraMetadata } from "./index-extra-metadata";
+import type { ExtraMetadata } from "./extra-metadata";
 
 // Used because of problems with `this` in extended classes
 export interface Context<Entity> {
-	beforeFind: (
-		params: BeforeFindParams<Entity>,
-	) => BeforeFindParams<DatabaseEntity>;
+	beforeFind: (params: BeforeFindInput<Entity>) => BeforeFindOutput;
 	afterFind: (params: AfterFindParams<Entity>) => Array<Entity>;
-	beforeFindOne: (
-		params: BeforeFindOneParams<Entity>,
-	) => BeforeFindOneParams<DatabaseEntity>;
+	beforeFindOne: (params: BeforeFindOneInput<Entity>) => BeforeFindOneOutput;
 	afterFindOne: (params: AfterFindOneParams<Entity>) => Entity;
-	beforeSave: (
-		params: BeforeSaveParams<Entity>,
-	) => BeforeSaveParams<DatabaseEntity>;
+	beforeSave: (params: BeforeSaveInput<Entity>) => BeforeSaveOutput;
 	afterSave: (params: AfterSaveParams) => any;
-	beforeUpsert: (
-		params: BeforeUpsertParams<Entity>,
-	) => BeforeUpsertParams<DatabaseEntity>;
+	beforeUpsert: (params: BeforeUpsertInput<Entity>) => BeforeUpsertOutput;
 	afterUpsert: (params: AfterUpsertParams<Entity>) => any;
-	beforeDelete: (
-		params: BeforeDeleteParams<Entity>,
-	) => BeforeDeleteParams<DatabaseEntity>;
+	beforeDelete: (params: BeforeDeleteInput<Entity>) => BeforeDeleteOutput;
 	afterDelete: (params: AfterDeleteParams<Entity>) => Promise<number>;
-	beforeCount: (
-		params: BeforeCountParams<Entity>,
-	) => BeforeCountParams<DatabaseEntity>;
+	beforeCount: (params: BeforeCountInput<Entity>) => BeforeCountOutput;
 	afterCount: (params: AfterCountParams<Entity>) => Promise<number>;
 	beforePerformativeCount: (
-		params: BeforePerformativeCountParams<Entity>,
-	) => BeforePerformativeCountParams<DatabaseEntity>;
+		params: BeforePerformativeCountInput<Entity>,
+	) => BeforePerformativeCountOutput;
 	afterPerformativeCount: (
 		params: AfterPerformativeCountParams<Entity>,
 	) => Promise<number>;
-	entityManager: EntityManager<
-		EntityExtraMetadata,
-		ColumnExtraMetadata,
-		IndexExtraMetadata
-	>;
+	entityManager: EntityManager<ExtraMetadata>;
 	entity: Entity;
 	logger: Logger;
 	tableName: string;

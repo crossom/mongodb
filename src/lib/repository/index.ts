@@ -20,11 +20,11 @@ import {
 	SaveData,
 } from "@techmmunity/symbiosis";
 import type { Collection, MongoClient } from "mongodb";
-import type { MongodbConnectionOptions } from "../..";
-import type { ColumnExtraMetadata } from "../types/column-extra-metadata";
-import type { EntityExtraMetadata } from "../types/entity-extra-metadata";
-import type { IndexExtraMetadata } from "../types/index-extra-metadata";
+
+import { MongodbConnectionOptions } from "../types/connection-options";
+import { ExtraMetadata } from "../types/extra-metadata";
 import { handleDatabaseError } from "../utils/handle-database-error";
+
 import { count } from "./count";
 import { del } from "./delete";
 import { find } from "./find";
@@ -38,11 +38,7 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 
 	public constructor(
 		private readonly connectionInstance: MongoClient,
-		entityManager: EntityManager<
-			EntityExtraMetadata,
-			ColumnExtraMetadata,
-			IndexExtraMetadata
-		>,
+		entityManager: EntityManager<ExtraMetadata>,
 		logger: Logger,
 		entity: Entity,
 		options: MongodbConnectionOptions,

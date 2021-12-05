@@ -1,13 +1,13 @@
-import type { BeforeSaveParams } from "@techmmunity/symbiosis/lib/repository/methods/before-save";
+import type { BeforeSaveInput } from "@techmmunity/symbiosis/lib/repository/methods/save/before";
 import type { UpdateOneModel } from "mongodb";
 import type { Context } from "../../types/context";
 import { formatSaveData } from "../../utils/format-save-data";
 
 export const save = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!
-	{ data: rawData, options: rawOptions }: BeforeSaveParams<Entity>,
+	{ data: rawData, options: rawOptions }: BeforeSaveInput<Entity>,
 ) => {
-	const { data } = context.beforeSave({
+	const { data, returnArray } = context.beforeSave({
 		data: rawData,
 		options: rawOptions,
 	});
@@ -50,6 +50,7 @@ export const save = async <Entity>(
 	return context.afterSave({
 		// Mongo doesn't return the new values, so we have to return the same data that we receive
 		data: insertedRecords,
+		returnArray,
 		options: rawOptions,
 	});
 };
