@@ -1,6 +1,7 @@
 import { unnest } from "@techmmunity/utils";
-import { handleNormalData } from "./handle-normal-data";
+
 import { handleFindOperators } from "./handle-find-operators";
+import { handleNormalData } from "./handle-normal-data";
 
 export const formatFindData = (data: Record<string, any>) => {
 	const rootObject = {};

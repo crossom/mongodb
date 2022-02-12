@@ -1,6 +1,8 @@
 import type { BeforeCountInput } from "@techmmunity/symbiosis/lib/repository/methods/count/before";
-import type { Context } from "../../types/context";
+
 import { formatFindData } from "../../utils/format-find-data";
+
+import type { Context } from "../../types/context";
 
 export const count = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!

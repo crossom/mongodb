@@ -1,8 +1,5 @@
-import {
-	FindOperator,
-	isFindOperator,
-	SymbiosisError,
-} from "@techmmunity/symbiosis";
+import type { FindOperator } from "@techmmunity/symbiosis";
+import { isFindOperator, SymbiosisError } from "@techmmunity/symbiosis";
 
 interface HandleFindOperatorsParams {
 	unnestedObj: Record<string, any>;

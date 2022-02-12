@@ -1,6 +1,8 @@
 import type { BeforeDeleteInput } from "@techmmunity/symbiosis/lib/repository/methods/delete/before";
-import type { Context } from "../../types/context";
+
 import { getArrayWhere } from "../../utils/get-array-where";
+
+import type { Context } from "../../types/context";
 
 export const del = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!
