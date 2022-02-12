@@ -1,7 +1,9 @@
 import type { BeforeFindOneInput } from "@techmmunity/symbiosis/lib/repository/methods/find-one/before";
 import type { Document } from "bson";
-import type { Context } from "../../types/context";
+
 import { getArrayWhere } from "../../utils/get-array-where";
+
+import type { Context } from "../../types/context";
 
 export const findOne = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!

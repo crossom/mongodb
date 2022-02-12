@@ -7,23 +7,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import {
+import type {
 	BaseQueryOptions,
 	ClassType,
 	EntityManager,
 	FindConditions,
 	FindOneOptions,
 	FindOptions,
-	BaseRepository,
-	SymbiosisError,
 	Logger,
 	SaveData,
+	SingleSaveData,
 } from "@techmmunity/symbiosis";
+import { BaseRepository, SymbiosisError } from "@techmmunity/symbiosis";
 import type { Collection, MongoClient } from "mongodb";
-
-import { MongodbConnectionOptions } from "../types/connection-options";
-import { ExtraMetadata } from "../types/extra-metadata";
-import { handleDatabaseError } from "../utils/handle-database-error";
 
 import { count } from "./count";
 import { del } from "./delete";
@@ -32,7 +28,12 @@ import { findOne } from "./find-one";
 import { performativeCount } from "./performative-count";
 import { save } from "./save";
 
-export class Repository<Entity> extends BaseRepository<Entity> {
+import { handleDatabaseError } from "../utils/handle-database-error";
+
+import type { MongodbConnectionOptions } from "../types/connection-options";
+import type { ExtraMetadata } from "../types/extra-metadata";
+
+export class Repository<Entity> extends BaseRepository<Entity, ExtraMetadata> {
 	// Is used in all methods, passed as `this as any`
 	private readonly table: Collection;
 
@@ -113,9 +114,9 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	 * ## NOT IMPLEMENTED!
 	 */
 	public update<Result = Array<Entity> | Entity>(
-		conditions: FindConditions<Entity>,
-		data: ClassType<Entity>,
-		options?: BaseQueryOptions,
+		_conditions: FindConditions<Entity>,
+		_data: SingleSaveData<Entity>,
+		_options?: BaseQueryOptions,
 	): Promise<Result> {
 		// Delete this after the method is implemented
 		throw new SymbiosisError({
@@ -157,7 +158,7 @@ export class Repository<Entity> extends BaseRepository<Entity> {
 	 */
 	public upsert<Result = Array<Entity> | Entity>(
 		conditions: FindConditions<Entity>,
-		data: ClassType<Entity>,
+		data: SingleSaveData<Entity>,
 		options?: BaseQueryOptions,
 	): Promise<Result> {
 		// Delete this after the method is implemented

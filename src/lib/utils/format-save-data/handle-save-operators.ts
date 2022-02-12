@@ -1,9 +1,7 @@
-import {
-	isSaveOperator,
-	SaveOperator,
-	SymbiosisError,
-} from "@techmmunity/symbiosis";
-import { RootObject } from ".";
+import type { SaveOperator } from "@techmmunity/symbiosis";
+import { isSaveOperator, SymbiosisError } from "@techmmunity/symbiosis";
+
+import type { RootObject } from ".";
 
 interface HandleSaveOperatorsParams {
 	unnestedObj: Record<string, any>;

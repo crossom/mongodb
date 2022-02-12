@@ -1,13 +1,14 @@
 import { BaseConnection, SymbiosisError } from "@techmmunity/symbiosis";
-import type { CustomClass } from "@techmmunity/symbiosis/lib/entity-manager/types/metadata-type";
 import { MongoClient } from "mongodb";
 
 import { Repository } from "../repository";
+
 import type {
 	DatabaseConfigType,
 	MongodbConnectionOptions,
 } from "../types/connection-options";
 import type { ExtraMetadata } from "../types/extra-metadata";
+import type { CustomClass } from "@techmmunity/symbiosis/lib/entity-manager/types/metadata-type";
 
 export class Connection extends BaseConnection<
 	DatabaseConfigType,

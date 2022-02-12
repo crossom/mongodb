@@ -1,7 +1,9 @@
 import type { BeforeSaveInput } from "@techmmunity/symbiosis/lib/repository/methods/save/before";
 import type { UpdateOneModel } from "mongodb";
-import type { Context } from "../../types/context";
+
 import { formatSaveData } from "../../utils/format-save-data";
+
+import type { Context } from "../../types/context";
 
 export const save = async <Entity>(
 	context: Context<Entity>, // Cannot destruct this!!!

@@ -1,4 +1,5 @@
-import { FindConditions } from "@techmmunity/symbiosis";
+import type { FindConditions } from "@techmmunity/symbiosis";
+
 import { formatFindData } from "../format-find-data";
 
 export const getArrayWhere = (where?: FindConditions<any>) => {

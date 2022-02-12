@@ -1,6 +1,7 @@
 import { isFindOperator, isSaveOperator } from "@techmmunity/symbiosis";
 import { nest } from "@techmmunity/utils";
-import { RootObject } from ".";
+
+import type { RootObject } from ".";
 
 interface HandleNormalDataParams {
 	unnestedObj: Record<string, any>;
