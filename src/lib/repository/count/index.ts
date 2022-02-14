@@ -19,9 +19,11 @@ export const count = async <Entity>(
 
 	const result = await context.table.count(query);
 
-	return context.afterCount({
-		dataToReturn: result,
-		where: rawWhere,
-		options: rawOptions,
-	});
+	return {
+		data: await context.afterCount({
+			dataToReturn: result,
+			where: rawWhere,
+			options: rawOptions,
+		}),
+	};
 };

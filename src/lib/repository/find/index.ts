@@ -47,9 +47,11 @@ export const find = async <Entity>(
 
 	const result = await command.toArray();
 
-	return context.afterFind({
-		conditions: rawConditions,
-		dataToReturn: result,
-		options: rawOptions,
-	});
+	return {
+		data: context.afterFind({
+			conditions: rawConditions,
+			dataToReturn: result,
+			options: rawOptions,
+		}),
+	};
 };

@@ -8,9 +8,11 @@ export const performativeCount = async <Entity>(
 ) => {
 	const result = await context.table.estimatedDocumentCount();
 
-	return context.afterPerformativeCount({
-		dataToReturn: result,
-		where,
-		options,
-	});
+	return {
+		data: await context.afterPerformativeCount({
+			dataToReturn: result,
+			where,
+			options,
+		}),
+	};
 };

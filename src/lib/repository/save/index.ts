@@ -49,10 +49,12 @@ export const save = async <Entity>(
 		})
 		.toArray();
 
-	return context.afterSave({
-		// Mongo doesn't return the new values, so we have to return the same data that we receive
-		data: insertedRecords,
-		returnArray,
-		options: rawOptions,
-	});
+	return {
+		data: context.afterSave({
+			// Mongo doesn't return the new values, so we have to return the same data that we receive
+			data: insertedRecords,
+			returnArray,
+			options: rawOptions,
+		}),
+	};
 };
