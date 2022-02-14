@@ -27,9 +27,11 @@ export const findOne = async <Entity>(
 
 	const result = (await context.table.findOne(query)) as Document | undefined;
 
-	return context.afterFindOne({
-		conditions: rawConditions,
-		dataToReturn: result,
-		options: rawOptions,
-	});
+	return {
+		data: context.afterFindOne({
+			conditions: rawConditions,
+			dataToReturn: result,
+			options: rawOptions,
+		}),
+	};
 };

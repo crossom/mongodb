@@ -23,9 +23,11 @@ export const del = async <Entity>(
 
 	const result = await context.table.deleteMany(query);
 
-	return context.afterDelete({
-		dataToReturn: result.deletedCount,
-		where: rawWhere,
-		options: rawOptions,
-	});
+	return {
+		data: await context.afterDelete({
+			dataToReturn: result.deletedCount,
+			where: rawWhere,
+			options: rawOptions,
+		}),
+	};
 };
