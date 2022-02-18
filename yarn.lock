@@ -594,9 +594,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@techmmunity/eslint-config@^5.2.2":
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/@techmmunity/eslint-config/-/eslint-config-5.2.2.tgz#ab5df8184ccf6ff56ae04abf4e8fac70ea0d82fd"
-  integrity sha512-L1mUKlEEgltlzbl2ufWsR2ZgcgfhmdXvVCcol6Ym8zDVBJhVdujGBnGeImLMze0ZYyBBilIcz1xJpxN3Zr2e5g==
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@techmmunity/eslint-config/-/eslint-config-5.2.3.tgz#9a6062cfb770c7c5668942e92738e0dda99908cb"
+  integrity sha512-+B/rpAjLtzQfPOoXLqbdrBJD/64fj5AlrSJldMEGAG7UiKOIOzNeLHL4CbK5UqEYZfe8AlbDrEw3GB0a4LVMmg==
   dependencies:
     "@babel/core" "^7.17.2"
     "@babel/eslint-parser" "^7.17.0"
