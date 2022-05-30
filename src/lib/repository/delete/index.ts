@@ -1,4 +1,4 @@
-import type { BeforeDeleteInput } from "@techmmunity/symbiosis/lib/repository/methods/delete/before";
+import type { BeforeDeleteInput } from "@thothom/core/lib/repository/methods/delete/before";
 
 import { getArrayWhere } from "../../utils/get-array-where";
 

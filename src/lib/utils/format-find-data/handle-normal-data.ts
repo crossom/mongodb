@@ -1,4 +1,4 @@
-import { isFindOperator, isSaveOperator } from "@techmmunity/symbiosis";
+import { isFindOperator, isSaveOperator } from "@thothom/core";
 import { nest } from "@techmmunity/utils";
 
 interface HandleNormalDataParams {

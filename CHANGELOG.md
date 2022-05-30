@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED] - 0000-00-00
+## [Unreleased] - 0000-00-00
 
 ### Added
 
@@ -15,7 +15,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.8] - 2022-02-14
+### Dependencies
+
+## [0.0.1] - 2022-05-30
+
+### Added
+
+### Changed
+
+- Package name to `ThothOM`, `@thothom/mongodb`
+
+### Fixed
+
+### Removed
+
+### Dependencies
+
+## [@techmmunity/symbiosis/mongodb@0.0.8] - 2022-02-14
 
 ### Added
 
@@ -27,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.7] - 2021-12-05
+## [@techmmunity/symbiosis/mongodb@0.0.7] - 2021-12-05
 
 ### Added
 
@@ -39,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.6] - 2021-11-18
+## [@techmmunity/symbiosis/mongodb@0.0.6] - 2021-11-18
 
 ### Added
 
@@ -52,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.5] - 2021-11-18
+## [@techmmunity/symbiosis/mongodb@0.0.5] - 2021-11-18
 
 ### Added
 
@@ -66,7 +82,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.4] - 2021-11-14
+## [@techmmunity/symbiosis/mongodb@0.0.4] - 2021-11-14
 
 ### Added
 
@@ -84,7 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.3] - 2021-11-14
+## [@techmmunity/symbiosis/mongodb@0.0.3] - 2021-11-14
 
 ### Added
 
@@ -104,7 +120,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `upsert` (should use `save` instead)
 
-## [0.0.2] - 2021-11-12
+## [@techmmunity/symbiosis/mongodb@0.0.2] - 2021-11-12
 
 ### Added
 
@@ -116,7 +132,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [0.0.1] - 2021-11-07
+## [@techmmunity/symbiosis/mongodb@0.0.1] - 2021-11-07
 
 ### Added
 

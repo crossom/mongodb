@@ -1,5 +1,5 @@
-import type { FindOperator } from "@techmmunity/symbiosis";
-import { isFindOperator, SymbiosisError } from "@techmmunity/symbiosis";
+import type { FindOperator } from "@thothom/core";
+import { isFindOperator, ThothError } from "@thothom/core";
 
 interface HandleFindOperatorsParams {
 	unnestedObj: Record<string, any>;
@@ -263,9 +263,9 @@ export const handleFindOperators = ({
 				return;
 
 			default:
-				throw new SymbiosisError({
+				throw new ThothError({
 					code: "INVALID_PARAM",
-					origin: "SYMBIOSIS",
+					origin: "THOTHOM",
 					message: "FindOperator not supported",
 					details: [`MongoDB doesn't support "${data.type}" operator`],
 				});

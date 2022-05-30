@@ -7,8 +7,8 @@ import {
 	Plus,
 	Pop,
 	Remove,
-	SymbiosisError,
-} from "@techmmunity/symbiosis";
+	ThothError,
+} from "@thothom/core";
 
 import { formatSaveData } from "../../lib/utils/format-save-data";
 
@@ -361,9 +361,9 @@ describe("formatSaveData Util", () => {
 				result = err;
 			}
 
-			expect(result instanceof SymbiosisError).toBeTruthy();
+			expect(result instanceof ThothError).toBeTruthy();
 			expect(result.code).toBe("INVALID_PARAM");
-			expect(result.origin).toBe("SYMBIOSIS");
+			expect(result.origin).toBe("THOTHOM");
 			expect(result.message).toBe("SaveOperator not supported");
 			expect(result.details).toStrictEqual([
 				'MongoDB doesn\'t support "ifNotExists" operator',
@@ -381,9 +381,9 @@ describe("formatSaveData Util", () => {
 				result = err;
 			}
 
-			expect(result instanceof SymbiosisError).toBeTruthy();
+			expect(result instanceof ThothError).toBeTruthy();
 			expect(result.code).toBe("INVALID_PARAM");
-			expect(result.origin).toBe("SYMBIOSIS");
+			expect(result.origin).toBe("THOTHOM");
 			expect(result.message).toBe("Invalid param");
 			expect(result.details).toStrictEqual([
 				'"Pop" operator only supports ONE parameter with the value `1` (last item) OR `-1` (first item).',

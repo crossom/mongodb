@@ -1,4 +1,4 @@
-import type { BeforeCountInput } from "@techmmunity/symbiosis/lib/repository/methods/count/before";
+import type { BeforeCountInput } from "@thothom/core/lib/repository/methods/count/before";
 
 import { formatFindData } from "../../utils/format-find-data";
 

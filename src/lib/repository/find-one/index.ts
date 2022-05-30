@@ -1,4 +1,4 @@
-import type { BeforeFindOneInput } from "@techmmunity/symbiosis/lib/repository/methods/find-one/before";
+import type { BeforeFindOneInput } from "@thothom/core/lib/repository/methods/find-one/before";
 import type { Document } from "bson";
 
 import { getArrayWhere } from "../../utils/get-array-where";
