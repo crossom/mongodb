@@ -1,4 +1,4 @@
-import type { BeforeFindInput } from "@techmmunity/symbiosis/lib/repository/methods/find/before";
+import type { BeforeFindInput } from "@thothom/core/lib/repository/methods/find/before";
 import { getTypeof, unnest } from "@techmmunity/utils";
 import type { SortDirection } from "mongodb";
 

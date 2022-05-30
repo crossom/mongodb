@@ -1,4 +1,4 @@
-import type { BeforePerformativeCountInput } from "@techmmunity/symbiosis/lib/repository/methods/performative-count/before";
+import type { BeforePerformativeCountInput } from "@thothom/core/lib/repository/methods/performative-count/before";
 
 import type { Context } from "../../types/context";
 

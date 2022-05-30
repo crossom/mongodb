@@ -1,4 +1,4 @@
-import type { FindConditions } from "@techmmunity/symbiosis";
+import type { FindConditions } from "@thothom/core";
 
 import { formatFindData } from "../format-find-data";
 

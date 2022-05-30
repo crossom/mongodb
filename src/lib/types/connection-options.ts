@@ -1,4 +1,4 @@
-import type { BaseConnectionOptions } from "@techmmunity/symbiosis";
+import type { BaseConnectionOptions } from "@thothom/core";
 import type { MongoClientOptions } from "mongodb";
 
 export interface DatabaseConfigType extends MongoClientOptions {

@@ -1,4 +1,4 @@
-import { BaseConnection, SymbiosisError } from "@techmmunity/symbiosis";
+import { BaseConnection, ThothError } from "@thothom/core";
 import { MongoClient } from "mongodb";
 
 import { Repository } from "../repository";
@@ -8,7 +8,7 @@ import type {
 	MongodbConnectionOptions,
 } from "../types/connection-options";
 import type { ExtraMetadata } from "../types/extra-metadata";
-import type { CustomClass } from "@techmmunity/symbiosis/lib/entity-manager/types/metadata-type";
+import type { CustomClass } from "@thothom/core/lib/entity-manager/types/metadata-type";
 
 export class Connection extends BaseConnection<
 	DatabaseConfigType,
@@ -21,25 +21,25 @@ export class Connection extends BaseConnection<
 	}
 
 	public constructor(options?: MongodbConnectionOptions) {
-		super("@techmmunity/symbiosis-mongodb", options);
+		super("@thothom/mongodb", options);
 	}
 
 	public async connect() {
 		const { url, databaseName, ...options } = this.options.databaseConfig || {};
 
 		if (!url) {
-			throw new SymbiosisError({
+			throw new ThothError({
 				code: "MISSING_PARAM",
-				origin: "SYMBIOSIS",
+				origin: "THOTHOM",
 				message: "Missing param",
 				details: ["`url` is a required property"],
 			});
 		}
 
 		if (!databaseName) {
-			throw new SymbiosisError({
+			throw new ThothError({
 				code: "MISSING_PARAM",
-				origin: "SYMBIOSIS",
+				origin: "THOTHOM",
 				message: "Missing param",
 				details: ["`databaseName` is a required property"],
 			});
@@ -53,7 +53,7 @@ export class Connection extends BaseConnection<
 
 			return this;
 		} catch (err: any) {
-			throw new SymbiosisError({
+			throw new ThothError({
 				code: "UNKNOWN",
 				origin: "DATABASE",
 				message: "Fail to connect with the database",

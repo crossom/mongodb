@@ -1,4 +1,4 @@
-import type { BeforeSaveInput } from "@techmmunity/symbiosis/lib/repository/methods/save/before";
+import type { BeforeSaveInput } from "@thothom/core/lib/repository/methods/save/before";
 import type { UpdateOneModel } from "mongodb";
 
 import { formatSaveData } from "../../utils/format-save-data";

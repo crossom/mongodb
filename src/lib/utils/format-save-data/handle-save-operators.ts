@@ -1,5 +1,5 @@
-import type { SaveOperator } from "@techmmunity/symbiosis";
-import { isSaveOperator, SymbiosisError } from "@techmmunity/symbiosis";
+import type { SaveOperator } from "@thothom/core";
+import { isSaveOperator, ThothError } from "@thothom/core";
 
 import type { RootObject } from ".";
 
@@ -55,9 +55,9 @@ export const handleSaveOperators = ({
 
 				// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 				if (![1, -1].includes(popVal)) {
-					throw new SymbiosisError({
+					throw new ThothError({
 						code: "INVALID_PARAM",
-						origin: "SYMBIOSIS",
+						origin: "THOTHOM",
 						message: "Invalid param",
 						details: [
 							'"Pop" operator only supports ONE parameter with the value `1` (last item) OR `-1` (first item).',
@@ -70,9 +70,9 @@ export const handleSaveOperators = ({
 				return;
 			}
 			default:
-				throw new SymbiosisError({
+				throw new ThothError({
 					code: "INVALID_PARAM",
-					origin: "SYMBIOSIS",
+					origin: "THOTHOM",
 					message: "SaveOperator not supported",
 					details: [`MongoDB doesn't support "${type}" operator`],
 				});
