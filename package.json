@@ -34,7 +34,7 @@
 	},
 	"dependencies": {
 		"@techmmunity/utils": "^1.10.0",
-		"mongodb": "^4.6.0"
+		"mongodb": "^5.0.1"
 	},
 	"devDependencies": {
 		"@techmmunity/eslint-config": "^5.2.3",
